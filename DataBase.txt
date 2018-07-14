@@ -1,0 +1,75 @@
+use ffuni ; 
+
+
+create table vr_video (video_name varchar(150) , field tinyint , company_id int ,
+ description varchar(250) , url varchar(250) , preview_url varchar(250) , 
+duration tinyint , inputFormat varchar(15) ,low_quality_url varchar(250), 
+high_quality_url varchar(250) , video_index tinyint , university_id int ,
+ video_id int primary key auto_increment ); 
+
+
+insert into vr_video (video_name , field , company_id  ,
+ description , url, preview_url , 
+duration 
+ , inputFormat ,low_quality_url , 
+high_quality_url  , video_index  , university_id ) values 
+("Kijamii" , 1 ,	14 , 
+"Software Engineering, Copywriting, Creative Marketing, Account Management, 
+Business Adminstration, Sports, Digital Marketing, Photography, Graphic Design.",
+
+"http://www.fastforwardsim.com/beta/js/css/elements/cache/KijamiiFinalLQ.mp4",
+
+"http://www.fastforwardsim.com/alpha/kij.jpg",
+20 ,"FORMAT_DEFAULT" , 
+"http://www.fastforwardsim.com/beta/js/css/elements/cache/KijamiiFinalLQ.mp4",
+
+"http://www.fastforwardsim.com/beta/js/css/elements/cache/KijamiiFinalLQ.mp4", 30 , null) , 
+("Hola" , 1 ,	14 , 
+"Man",
+
+"http://www.fastforwardsim.com/beta/js/css/elements/cache/KijamiiFinalLQ.mp4",
+
+"http://www.fastforwardsim.com/alpha/mo4logo.png",
+20 ,"FORMAT_DEFAULT" , 
+"http://www.fastforwardsim.com/beta/js/css/elements/cache/KijamiiFinalLQ.mp4",
+
+"http://www.fastforwardsim.com/beta/js/css/elements/cache/KijamiiFinalLQ.mp4", 30 , null) 
+; 
+
+create table user (user_name varchar(50) , password varchar(40) , user_email varchar(50) , major varchar(100) , degree varchar(20)  
+ birth_date datetime , school varchar (100) , user_id int primary key auto_increment , registeration_date datetime ) ;
+
+
+insert into user(user_name , password , user_email , registeration_date , school , major , birth_date , degree) values 
+( "walid moussa" , "1234" , "walidmoussa@mail.com" ,  '2018-3-15 18:00:00' , 'naser el dean' , 'engineering' , "1995-3-5 18:00:00" , 'Graduate') ; 
+
+
+create table university (name varchar(50) , location varchar(250) , description varchar(1000) ,
+ majors varchar(300) , accommodation_fees varchar(100) 
+ grades varchar(20) , price_range varchar(20), img_url varchar(250) ,feature varchar(250) , university_id int primary key auto_increment) ; 
+
+insert into university (name , location , description , grades, price_range , img_url , feature , majors ,accommodation_fees) 
+ values 
+('GUC' , "tagamo3 5ames" , "very good university" ,"B+", "2000$-5000$" , "https://i.ytimg.com/vi/RofboY-hQyI/maxresdefault.jpg" ,"swimming pool, good teaching stuff" ,"engineering,bussiness" , "1000$-2000$" )
+,
+ ('AUC' , "tagamo3 5ames" , "wow university" ,"A+", "4000$-6000$", null ,"swimming pool, good view","engineering,bussiness" , "1000$-2000$"); 
+
+
+create table vr_video_parts (vr_video_id int, high_quality_url varchar(250) ,
+
+part_name varchar(20) , low_quality_url varchar(250) , part_index tinyint ) ;
+
+insert into vr_video_parts (vr_video_id , high_quality_url ,
+   low_quality_url,part_name  , part_index ) 
+values ( 1 , "http://www.fastforwardsim.com/beta/js/css/elements/cache/Mo4/Break.mp4",
+
+"http://www.fastforwardsim.com/beta/js/css/elements/cache/Mo4/Break.mp4" , "Break" , 5 ) , 
+
+( 1 , "http://www.fastforwardsim.com/beta/js/css/elements/cache/Mo4/Mo4Intro.mp4" 
+,
+"http://www.fastforwardsim.com/beta/js/css/elements/cache/Mo4/Mo4Intro.mp4" , "Introduction" , 
+1)  ;
+
+
+
+create table user_university_interests (user_id int , university_id int , interest_date datetime) ; 

@@ -1,0 +1,26 @@
+{
+  "name": "NodejsStarterApp",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node app.js",
+    "monitor": "nodemon app.js"
+  },
+  "dependencies": {
+    "ajv": "^6.4.0",
+    "body-parser": "^1.15.2",
+    "cf-deployment-tracker-client": "*",
+    "cfenv": "1.0.x",
+    "cors": "^2.8.4",
+    "express": "^4.16.0",
+    "jsonwebtoken": "^8.3.0",
+    "mysql": "*",
+    "mysql2": "^1.5.3"
+  },
+  "repository": {},
+  "engines": {
+    "node": "8.9.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  }
+}

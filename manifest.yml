@@ -1,0 +1,8 @@
+---
+applications:
+- name:    fastForwardUni
+  host:    ffuniserver
+  memory:  512M
+  services:
+    - FFDB
+    
