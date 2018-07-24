@@ -60,28 +60,29 @@ app.use("/user" , userRounter)
 
 app.get("/hello", function(request,response){
 
-  var verify = require("./controllers/verify") ;
-  var token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNTI5MzM3MjQ0LCJleHAiOjE1Mjk0MjcyNDR9.bIqTq5luvjGysmajXlUIUvvQh2UwRbNR3DNHd0xRoik"
+  response.send("hi")
+//   var verify = require("./controllers/verify") ;
+//   var token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNTI5MzM3MjQ0LCJleHAiOjE1Mjk0MjcyNDR9.bIqTq5luvjGysmajXlUIUvvQh2UwRbNR3DNHd0xRoik"
 
-  const jwt = require("jsonwebtoken");
-  const secretKey = "1234-5678-0987-6543"
+//   const jwt = require("jsonwebtoken");
+//   const secretKey = "1234-5678-0987-6543"
 
 
-  jwt.verify(token, secretKey, function (err, decoded) {
-    if (err) {
-        console.log("error")
-        var err = new Error('You are not authenticated!');
-        err.status = 401;
-        return next(err);
-    } else {
-        // if everything is good, save to request for use in other routes
-        // req.userId = decoded.id;
-        console.log('hello')
-        console.log(decoded)
-        response.send(decoded)
+//   jwt.verify(token, secretKey, function (err, decoded) {
+//     if (err) {
+//         console.log("error")
+//         var err = new Error('You are not authenticated!');
+//         err.status = 401;
+//         return next(err);
+//     } else {
+//         // if everything is good, save to request for use in other routes
+//         // req.userId = decoded.id;
+//         console.log('hello')
+//         console.log(decoded)
+//         response.send(decoded)
 
-    }
-});
+//     }
+// });
   
 });
 

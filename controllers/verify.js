@@ -3,7 +3,7 @@ const secretKey = "1234-5678-0987-6543"
 
 exports.getToken = function (user) {
     return jwt.sign(user, secretKey, {
-        expiresIn: 3600 * 25 
+        expiresIn: 3600 * 24 *100 
     });
 };
 

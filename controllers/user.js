@@ -9,6 +9,7 @@ exports.login = (req, res, next) => {
         " and password=" + password;
     db.query(qstring, function (err, result) {
         if (err) {
+            console.log(err)
             res.send({
                 success: false,
                 error: err
@@ -18,9 +19,9 @@ exports.login = (req, res, next) => {
             if (result.length == 0) {
                 res.send({
                     success: true,
-                    successfulLogin: false,
                     data: {
-                        msg: "wrong email or password"
+                        msg: "wrong email or password",
+                        successfulLogin: false
                     }
                 })
             }
@@ -145,9 +146,32 @@ exports.register = (req, res, next) => {
 
 
 
-exports.EmailCheck = (req, res, next) => {
+exports.emailData = (req, res, next) => {
     var userEmail = JSON.stringify(req.query.user_email)
-    var qstring = "select *  from user where user_email=" + userEmail;
+    var qstring = "select degree , phone_no  , birth_date , password from user where user_email=" + userEmail;
+    db.query(qstring, function (err, result) {
+        if (err) {
+            res.send({
+                success: false,
+                error: err
+            })
+        }
+        else {
+            res.send({
+                success: true,
+                data: result[0]
+            })
+        }
+    })
+}
+
+
+
+exports.contactCheck = (req, res, next) => {
+    var userEmail = JSON.stringify(req.body.user_email)
+    var phone = JSON.stringify(req.body.phone)
+    var qstring = "select user_email , phone_no  from user where user_email=" + userEmail
+        + " or phone_no =" + phone;
     db.query(qstring, function (err, result) {
         if (err) {
             res.send({
@@ -160,14 +184,23 @@ exports.EmailCheck = (req, res, next) => {
                 res.send({
                     success: true,
                     data: {
-                        validEmail: true
+                        validContact: true
+                    }
+                })
+            else if (JSON.stringify(result[0].user_email) == userEmail)
+                res.send({
+                    success: true,
+                    data: {
+                        validContact: false,
+                        msg: "this email is already used"
                     }
                 })
             else
                 res.send({
                     success: true,
                     data: {
-                        validEmail: false 
+                        validContact: false,
+                        msg: "this mobile number is already used"
                     }
                 })
         }
@@ -175,4 +208,35 @@ exports.EmailCheck = (req, res, next) => {
 }
 
 
+exports.emailCheck = (req, res, next) => {
+    var userEmail = JSON.stringify(req.query.user_email)
+    // var phone = JSON.stringify(req.body.phone)
+    console.log("hopa" , userEmail)
+    var qstring = "select user_email , phone_no  from user where user_email=" + userEmail
+    db.query(qstring, function (err, result) {
+        if (err) {
+            res.send({
+                success: false,
+                error: err
+            })
+        }
+        else {
+            if (result.length == 0)
+                res.send({
+                    success: true,
+                    data: {
+                        emailExist: false,
+                        msg: "this email is not registered!"
 
+                    }
+                })
+            else
+                res.send({
+                    success: true,
+                    data: {
+                        emailExist: true,
+                    }
+                })
+        }
+    })
+}
